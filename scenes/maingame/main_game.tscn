@@ -1,3 +1,9 @@
 [gd_scene format=3 uid="uid://c7pdbf5tqnxde"]
 
+[ext_resource type="PackedScene" uid="uid://cisxvklfjejor" path="res://scenes/cannon/cannon.tscn" id="1_aleep"]
+
 [node name="MainGame" type="Node2D" unique_id=1580238451]
+
+[node name="Cannon" parent="." unique_id=2060089470 instance=ExtResource("1_aleep")]
+position = Vector2(262, 271)
+scale = Vector2(3.4580917, 3.4580917)

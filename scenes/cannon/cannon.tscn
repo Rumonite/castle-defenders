@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://cisxvklfjejor"]
+
+[ext_resource type="Script" uid="uid://d1ivi85h2wkpu" path="res://scenes/cannon/cannon.gd" id="1_4r05k"]
+[ext_resource type="Texture2D" uid="uid://dj1awattvvq2m" path="res://assets/cannon.png" id="2_xgg2g"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_xgg2g"]
+radius = 1.0
+
+[node name="Cannon" type="Node2D" unique_id=2060089470]
+script = ExtResource("1_4r05k")
+
+[node name="Sprite2D" type="Sprite2D" parent="." unique_id=700892680]
+position = Vector2(0, -2)
+texture = ExtResource("2_xgg2g")
+
+[node name="ShootCD" type="Timer" parent="." unique_id=404104001]
+unique_name_in_owner = true
+wait_time = 0.1
+autostart = true
+
+[node name="BulletSpawnLoc" type="Area2D" parent="." unique_id=1944372136]
+position = Vector2(0, -9)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BulletSpawnLoc" unique_id=200404584]
+shape = SubResource("CircleShape2D_xgg2g")
+
+[connection signal="timeout" from="ShootCD" to="." method="_on_shoot_cd_timeout"]
