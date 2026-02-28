@@ -6,5 +6,4 @@
 
 [node name="Cannon" parent="." unique_id=2060089470 instance=ExtResource("1_aleep")]
 position = Vector2(360, 100)
-rotation = 3.1415927
 scale = Vector2(3.4580917, 3.4580917)

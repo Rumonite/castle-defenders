@@ -19,6 +19,7 @@ func _ready():
 	dir = spawnRot + randf_range(-spread_rads, spread_rads)
 	global_rotation = dir
 	
+
 	color_set()
 	
 func _physics_process(_delta: float) -> void:
@@ -33,6 +34,8 @@ func bullet_movement():
 func color_set():
 	if self.team == "red":
 		$Sprite2D.modulate = Color(1.0, 0.0, 0.0, 1.0)
+	if self.team == "blue":
+		$Sprite2D.modulate = Color(0.0, 0.0, 1.0, 1.0)
 
 func check_lifetime(delta):
 	current_life += delta

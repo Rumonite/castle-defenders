@@ -7,7 +7,10 @@ var team = "red"
 var on_cd := false
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	if team == "blue":
+		rotation_degrees = 0
+	if team == "red":
+		rotation_degrees = 180
 	
 func _physics_process(_delta: float) -> void:
 	actions()
@@ -27,7 +30,15 @@ func actions():
 		if rotation_degrees < 90:
 			rotation_degrees = 90
 	if team == "blue":
-		pass
+		if Input.is_action_pressed("blue_aimleft") and rotation_degrees >= -90:
+			rotation_degrees -= 5
+		if Input.is_action_pressed("blue_aimright") and rotation_degrees <= 90:
+			rotation_degrees += 5
+			
+		if rotation_degrees < -90:
+			rotation_degrees = -90
+		if rotation_degrees > 90:
+			rotation_degrees = 90
 
 
 func shoot():
@@ -43,6 +54,8 @@ func shoot():
 func color_set():
 	if self.team == "red":
 		$Sprite2D.modulate = Color(1.0, 0.0, 0.0, 1.0)
+	if self.team == "blue":
+		$Sprite2D.modulate = Color(0.0, 0.0, 1.0, 1.0)
 	
 
 func _on_shoot_cd_timeout() -> void:
