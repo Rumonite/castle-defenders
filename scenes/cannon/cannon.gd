@@ -3,8 +3,12 @@ extends Node2D
 @onready var main = get_tree().get_root().get_node("MainGame")
 @onready var projectile = load("res://scenes/bullet/bullet.tscn")
 
-var team = "red"
+var team = ""
+var rot_spd: float = 2.5
 var on_cd := false
+
+
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	if team == "blue":
@@ -21,9 +25,9 @@ func _physics_process(_delta: float) -> void:
 func actions():
 	if team == "red":
 		if Input.is_action_pressed("red_aimleft") and rotation_degrees <= 270:
-			rotation_degrees += 5
+			rotation_degrees += rot_spd
 		if Input.is_action_pressed("red_aimright") and rotation_degrees >= 90:
-			rotation_degrees -= 5
+			rotation_degrees -= rot_spd
 			
 		if rotation_degrees > 270:
 			rotation_degrees = 270
@@ -31,9 +35,9 @@ func actions():
 			rotation_degrees = 90
 	if team == "blue":
 		if Input.is_action_pressed("blue_aimleft") and rotation_degrees >= -90:
-			rotation_degrees -= 5
+			rotation_degrees -= rot_spd
 		if Input.is_action_pressed("blue_aimright") and rotation_degrees <= 90:
-			rotation_degrees += 5
+			rotation_degrees += rot_spd
 			
 		if rotation_degrees < -90:
 			rotation_degrees = -90
@@ -50,6 +54,7 @@ func shoot():
 		instance.team = self.team
 		main.add_child.call_deferred(instance)
 		on_cd = true
+		$AudioStreamPlayer.play()
 
 func color_set():
 	if self.team == "red":

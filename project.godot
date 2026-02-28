@@ -23,6 +23,11 @@ Globals="*uid://iqom5oddb5qx"
 
 window/size/viewport_width=720
 window/size/viewport_height=1024
+window/size/mode=2
+window/size/initial_position_type=0
+window/stretch/mode="viewport"
+window/stretch/aspect="keep_width"
+window/handheld/orientation=1
 
 [input]
 

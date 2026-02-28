@@ -1,6 +1,6 @@
 extends CharacterBody2D
 
-@export var SPEED = 200
+@export var SPEED = 300
 @export var spread_degrees: float = 7.0
 @export var max_lifetime: float = 1.5
 
