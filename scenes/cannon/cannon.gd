@@ -19,33 +19,37 @@ func _ready() -> void:
 func _physics_process(_delta: float) -> void:
 	actions()
 	color_set()
-	shoot()
+	if team =="red" and Input.is_action_pressed("red_fire"):
+		shoot()
+	if team =="blue" and Input.is_action_pressed("blue_fire"):
+		shoot()
 	
 	
 func actions():
 	if team == "red":
-		if Input.is_action_pressed("red_aimleft") and rotation_degrees <= 270:
+		if Input.is_action_pressed("red_aimup") and rotation_degrees <= 0:
 			rotation_degrees += rot_spd
-		if Input.is_action_pressed("red_aimright") and rotation_degrees >= 90:
+		if Input.is_action_pressed("red_aimdown") and rotation_degrees >= -180:
 			rotation_degrees -= rot_spd
 			
-		if rotation_degrees > 270:
-			rotation_degrees = 270
-		if rotation_degrees < 90:
-			rotation_degrees = 90
+		if rotation_degrees > 0:
+			rotation_degrees = 0
+		if rotation_degrees < -180:
+			rotation_degrees = -180
 	if team == "blue":
-		if Input.is_action_pressed("blue_aimleft") and rotation_degrees >= -90:
+		if Input.is_action_pressed("blue_aimup") and rotation_degrees >= 0:
 			rotation_degrees -= rot_spd
-		if Input.is_action_pressed("blue_aimright") and rotation_degrees <= 90:
+		if Input.is_action_pressed("blue_aimdown") and rotation_degrees <= 180:
 			rotation_degrees += rot_spd
 			
-		if rotation_degrees < -90:
-			rotation_degrees = -90
-		if rotation_degrees > 90:
-			rotation_degrees = 90
+		if rotation_degrees < 0:
+			rotation_degrees = 0
+		if rotation_degrees > 180:
+			rotation_degrees = 180
 
 
 func shoot():
+	
 	if !on_cd:
 		var instance = projectile.instantiate()
 		instance.dir = rotation
@@ -53,6 +57,8 @@ func shoot():
 		instance.spawnRot = rotation
 		instance.team = self.team
 		main.add_child.call_deferred(instance)
+		
+		%ShootCD.start()
 		on_cd = true
 		$AudioStreamPlayer.play()
 

@@ -3,9 +3,9 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	%RedCannon.position = Vector2(360, 100)
+	%BlueCannon.position = Vector2(100, 360)
 	%RedCannon.team = "red"
-	%BlueCannon.position = Vector2(360, 924)
+	%RedCannon.position = Vector2(924, 360)
 	%BlueCannon.team = "blue"
 
 
